@@ -1,4 +1,4 @@
-// Tema claro/oscuro. Se carga en el <head> para aplicarlo antes de pintar.
+// Tema claro/oscuro y año del footer. Se carga en el <head> para aplicarlo antes de pintar.
 (function () {
   var html = document.documentElement;
   var CLAVE = 'altadensidad_tema';
@@ -13,6 +13,10 @@
   aplicar(claro);
 
   document.addEventListener('DOMContentLoaded', function () {
+    // Año del footer en hora de Colombia (UTC-5 todo el año). El del HTML queda de respaldo sin JS.
+    var anio = document.getElementById('anio');
+    if (anio) anio.textContent = new Date(Date.now() - 5 * 60 * 60 * 1000).getUTCFullYear();
+
     var boton = document.getElementById('tema');
     function rotular() {
       var texto = claro ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro';
