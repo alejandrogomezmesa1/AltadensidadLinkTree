@@ -1,0 +1,352 @@
+/* Enlaces de Fragancias de Alta Densidad: sistema Haute Parfumerie */
+
+/* 1 · TOKENS */
+:root {
+  /* paleta base */
+  --hueso: #F4F1EA;
+  --hueso-2: #EAE5DA;
+  --tinta: #0B0B0C;
+  --grafito: #151517;
+  --humo: #F2EEE6;
+  --oro: #9A7B3F;
+  --oro-claro: #C9A961;
+  --vino: #5A1220;
+  --gris: #6B675F;
+  --gris-2: #9A958A;
+  --filete: #D6D0C3;
+  --filete-2: #2A2A2D;
+
+  /* semánticos (modo oscuro predeterminado) */
+  --c-bg: var(--tinta);
+  --c-surface: var(--grafito);
+  --c-ink: var(--humo);
+  --c-mute: var(--gris-2);
+  --c-line: var(--filete-2);
+  --c-accent: var(--oro-claro);
+  --c-wine: var(--vino);
+  --c-inv-bg: var(--humo);
+  --c-inv-ink: var(--tinta);
+  --c-scrim: rgba(0, 0, 0, 0.75);
+
+  /* tipografía */
+  --f-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --f-ui: "Jost", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --fs-1: 11px;
+  --fs-2: 13px;
+  --fs-3: 15px;
+  --fs-4: 20px;
+  --fs-5: clamp(30px, 4.5vw, 60px);
+  --fs-6: clamp(44px, 7vw, 104px);
+  --ls-ui: 0.22em;
+  --ls-logo: 0.42em;
+  --lh-tight: 1;
+  --lh-body: 1.6;
+
+  /* espacio */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 16px;
+  --sp-4: 24px;
+  --sp-5: 40px;
+  --sp-6: 64px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --sec: clamp(56px, 9vw, 120px);
+  --maxw: 1320px;
+  --nav-h: 64px;
+
+  /* forma */
+  --r: 0px;
+  --bw: 1px;
+
+  /* movimiento */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-1: 0.25s;
+  --t-2: 0.5s;
+  --t-3: 0.9s;
+
+  /* capas */
+  --z-header: 20;
+  --z-aura: 26;
+  --z-scrim: 30;
+  --z-panel: 31;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Modo Claro (vía html.modo-claro o data-theme="light") */
+html.modo-claro,
+:root[data-theme="light"] {
+  --c-bg: var(--hueso);
+  --c-surface: var(--hueso-2);
+  --c-ink: var(--tinta);
+  --c-mute: var(--gris);
+  --c-line: var(--filete);
+  --c-accent: var(--oro);
+  --c-wine: var(--vino);
+  --c-inv-bg: var(--tinta);
+  --c-inv-ink: var(--hueso);
+  --c-scrim: rgba(0, 0, 0, 0.45);
+}
+
+/* 2 · BASE */
+* { box-sizing: border-box; margin: 0; padding: 0; border-radius: var(--r); }
+
+body {
+  color: var(--c-ink);
+  font: 300 var(--fs-3)/var(--lh-body) var(--f-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+.up { text-transform: uppercase; letter-spacing: var(--ls-ui); font-size: var(--fs-1); font-weight: 400; }
+
+/* El botón de tema muestra el icono del modo al que cambia */
+.ico-luna, html.modo-claro .ico-sol { display: none; }
+html.modo-claro .ico-luna { display: inline-block; }
+
+.nav-ico {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  font-size: 13px;
+  color: var(--c-ink);
+  cursor: pointer;
+  border: var(--bw) solid transparent;
+  transition: border-color var(--t-1), color var(--t-1);
+}
+
+.nav-ico:hover {
+  border-color: var(--c-line);
+  color: var(--c-accent);
+}
+
+.nav-ico:focus-visible {
+  outline: var(--bw) solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+/* 3 · PÁGINA */
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background:
+    radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--c-accent) 10%, transparent), transparent 70%),
+    var(--c-bg);
+}
+
+.enl {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--gutter) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.enl-tema {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--gutter);
+}
+
+/* Cabecera */
+.enl-cab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--sp-3);
+}
+
+.enl-simbolo {
+  color: var(--c-accent);
+  display: inline-flex;
+}
+
+.enl-eyebrow {
+  color: var(--c-accent);
+  font-weight: 500;
+}
+
+.enl-h {
+  font-family: var(--f-display);
+  font-weight: 300;
+  font-size: clamp(44px, 12vw, 64px);
+  line-height: var(--lh-tight);
+  color: var(--c-ink);
+}
+
+.enl-h em {
+  font-style: italic;
+  color: var(--c-accent);
+}
+
+.enl-lema {
+  font-family: var(--f-ui);
+  font-weight: 300;
+  font-size: var(--fs-3);
+  line-height: var(--lh-body);
+  color: var(--c-mute);
+}
+
+/* En modo claro el oro satinado no alcanza 4,5:1 en letra pequeña */
+html.modo-claro .enl-eyebrow,
+html.modo-claro .enl-fila:not(.enl-fila--destacada) .enl-n {
+  color: color-mix(in srgb, var(--oro) 78%, var(--tinta));
+}
+
+/* Lista */
+.enl-lista {
+  list-style: none;
+  border-top: var(--bw) solid var(--c-line);
+}
+
+.enl-lista li {
+  border-bottom: var(--bw) solid var(--c-line);
+}
+
+.enl-fila {
+  display: grid;
+  grid-template-columns: 36px 28px 1fr auto;
+  align-items: center;
+  gap: var(--sp-3);
+  min-height: 72px;
+  padding: var(--sp-3) var(--sp-2);
+  color: var(--c-ink);
+  text-decoration: none;
+  transition: background var(--t-1) var(--ease), padding var(--t-1) var(--ease);
+}
+
+.enl-fila:hover,
+.enl-fila:focus-visible {
+  background: var(--c-surface);
+  padding-left: var(--sp-3);
+}
+
+.enl-fila:focus-visible {
+  outline: var(--bw) solid var(--c-accent);
+  outline-offset: -1px;
+}
+
+.enl-n {
+  font-family: var(--f-display);
+  font-size: var(--fs-4);
+  font-variant-numeric: oldstyle-nums;
+  color: var(--c-accent);
+}
+
+.enl-ico {
+  font-size: 18px;
+  text-align: center;
+  color: var(--c-ink);
+}
+
+.enl-txt {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.enl-titulo {
+  font-family: var(--f-ui);
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.enl-nota {
+  font-family: var(--f-ui);
+  font-weight: 300;
+  font-size: var(--fs-2);
+  color: var(--c-mute);
+}
+
+.enl-flecha {
+  color: var(--c-mute);
+  transition: transform var(--t-1) var(--ease), color var(--t-1);
+}
+
+.enl-fila:hover .enl-flecha {
+  transform: translateX(4px);
+  color: var(--c-accent);
+}
+
+/* El primero (Catálogo) en bloque invertido: la acción principal */
+.enl-fila--destacada {
+  background: var(--c-inv-bg);
+  color: var(--c-inv-ink);
+}
+
+.enl-fila--destacada .enl-ico,
+.enl-fila--destacada .enl-flecha {
+  color: var(--c-inv-ink);
+}
+
+.enl-fila--destacada .enl-nota {
+  color: var(--c-inv-ink);
+  opacity: 0.7;
+}
+
+.enl-fila--destacada .enl-n {
+  color: var(--oro);
+}
+
+/* En modo claro el bloque invertido es tinta: va el oro luminoso (combinación tinta + oro claro) */
+html.modo-claro .enl-fila--destacada .enl-n,
+:root[data-theme="light"] .enl-fila--destacada .enl-n {
+  color: var(--oro-claro);
+}
+
+.enl-fila--destacada:hover,
+.enl-fila--destacada:focus-visible {
+  background: var(--c-inv-bg);
+}
+
+/* Pie */
+.enl-pie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.enl-redes {
+  display: flex;
+  gap: var(--sp-2);
+}
+
+.enl-redes a {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: var(--bw) solid var(--c-line);
+  color: var(--c-ink);
+  font-size: 17px;
+  transition: border-color var(--t-1), color var(--t-1);
+}
+
+.enl-redes a:hover {
+  border-color: var(--c-accent);
+  color: var(--c-accent);
+}
+
+.enl-firma {
+  color: var(--c-mute);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enl-fila,
+  .enl-flecha {
+    transition: none;
+  }
+}
