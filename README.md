@@ -12,6 +12,11 @@ Es un sitio estático: no se instala ni se compila nada. Sirve en la raíz de un
 | `vercel.json` | Cabeceras de seguridad al publicar en Vercel |
 | `assets/` | Iconos de la marca |
 
+## Publicación
+
+- **Link oficial:** https://altadensidad.vercel.app
+- Cada push a `main` lo publica solo en Vercel (proyecto `altadensidad`) y también en GitHub Pages, que queda de respaldo.
+
 ## Al editar
 
 - WhatsApp lleva siempre el indicativo: `wa.me/573046477694`.
