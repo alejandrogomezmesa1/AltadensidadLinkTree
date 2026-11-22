@@ -8,7 +8,8 @@ Es un sitio estático: no se instala ni se compila nada. Sirve en la raíz de un
 |---|---|
 | `index.html` | Textos, enlaces y redes. Aquí se agregan, quitan o reordenan |
 | `styles.css` | Diseño Haute Parfumerie, en modo claro y oscuro |
-| `tema.js` | Botón de tema |
+| `tema.js` | Botón de tema y año del footer (hora de Colombia) |
+| `vercel.json` | Cabeceras de seguridad al publicar en Vercel |
 | `assets/` | Iconos de la marca |
 
 ## Al editar

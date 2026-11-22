@@ -7,3 +7,4 @@
 *.zip
 *bd_url*
 respaldos/
+.vercel/
